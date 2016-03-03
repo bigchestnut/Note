@@ -22,17 +22,28 @@
 #include <QMainWindow>
 
 class KNMainWindowContainer;
+/*!
+ * \brief The KNMainWindow class
+ */
 class KNMainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit KNMainWindow(QWidget *parent = 0);
-
+    /*!
+     * \brief loadWidget load window's widget before it shows.
+     * \return loading result.
+     */
+    bool loadWidget();
 signals:
 
 public slots:
 
 private:
+    /*!
+     * \brief mainWidget the pointer to this window's mainwidget.
+     */
+    KNMainWindowContainer *mainWidget;
 };
 
 #endif // KNMAINWINDOW_H

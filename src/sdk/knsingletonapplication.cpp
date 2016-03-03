@@ -34,7 +34,7 @@ KNSingletonApplication::KNSingletonApplication(int &argc,
 {
     //We used the QSharedMemory for singleton detecting. Give the QSharedMemory
     //the unique key, check the shared memory and we will know whether this is
-    //first instance.
+    //the first instance.
     if(m_uniqueKeyMemeory->attach())
     {
         //We detect another instance running.
@@ -69,7 +69,7 @@ KNSingletonApplication::KNSingletonApplication(int &argc,
     //The unique key will be used as the connections name as well.
     if(!m_messageServer->listen(uniqueKey))
     {
-        //If we are failed to start listening, and it was caused by address has
+        //If we failed to start listening, and it was caused by address has
         //been taken, it must be a previous instance crashed and left those data
         //there. Remove it and listen again.
         if(QAbstractSocket::AddressInUseError==m_messageServer->serverError())
@@ -136,6 +136,7 @@ bool KNSingletonApplication::sendMessages(const QString &uniqueKey,
     if(!client.waitForBytesWritten(timeoutLimit))
     {
         qDebug("Send arguments failed.");
+        //Disconnect from the server.
         client.disconnectFromServer();
         return false;
     }

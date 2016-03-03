@@ -17,10 +17,32 @@
  */
 
 #include "knmainwindowcontainer.h"
-
-KNMainWindowContainer::KNMainWindowContainer(QWidget *parent) :
-    QWidget(parent)
+#include <QTreeWidget>
+#include <QHBoxLayout>
+#include <QTreeWidgetItem>
+KNMainWindowContainer::KNMainWindowContainer(QWidget *parent)
+    :QWidget(parent)
+    ,treeWidget(new QTreeWidget())
+    ,mainLayout(new QHBoxLayout())
 {
+    //set treewidget's columnCount
+    treeWidget->setColumnCount(1);
+    //set treewidget's headerlaybel
+    treeWidget->setHeaderLabel(tr("My Notes"));
+    //add node to treeWidget
+    QTreeWidgetItem *item1 = new QTreeWidgetItem(treeWidget,
+                             QStringList(QString(tr("笔记"))));
+    //add child node to item1
+    QTreeWidgetItem *item1_1 = new QTreeWidgetItem(item1,
+                                   QStringList(QString(tr("英语"))));
+    item1->addChild(item1_1);
 
+    //expand all nodes.
+    //treeWidget->expandAll();
+
+    //add treeWidget to mainLayout's left.
+    mainLayout->addWidget(treeWidget);
+    //set layout.
+    this->setLayout(mainLayout);
 }
 

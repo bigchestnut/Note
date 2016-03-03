@@ -37,17 +37,39 @@ public:
      */
     explicit KNPluginManager(QObject *parent = 0);
 
+    /*!
+     * \brief mainWindow return the pointer to mainWindow
+     * \return the pointer to mainWindow
+     */
     KNMainWindow *mainWindow() const;
 
 signals:
 
 public slots:
+    /*!
+     * \brief onActionArgumentsAvaliable
+     * \param arguments
+     */
     void onActionArgumentsAvaliable(QStringList arguments);
+    /*!
+     * \brief setMainWindow set mainwindow for the application.
+     * \param mainWindow the pointer to mainWindow which you want to set for the
+     * application.
+     */
     void setMainWindow(KNMainWindow *mainWindow);
+    /*!
+     * \brief loadPlugins load all plugins before the mainWindow show.
+     */
     void loadPlugins();
+    /*!
+     * \brief launchApplication launch the application(show mainwindow).
+     */
     void launchApplication();
 
 private:
+    /*!
+     * \brief m_mainWindow the pointer to this applicaiton's mainwindow.
+     */
     KNMainWindow *m_mainWindow;
 };
 

@@ -17,8 +17,18 @@
  */
 
 #include "knmainwindow.h"
-
-KNMainWindow::KNMainWindow(QWidget *parent) : QMainWindow(parent)
+#include "knmainwindowcontainer.h"
+KNMainWindow::KNMainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    ,mainWidget(new KNMainWindowContainer())
 {
-
+    loadWidget();
 }
+
+bool KNMainWindow::loadWidget()
+{
+    this->setCentralWidget(mainWidget);
+    this->setWindowTitle(tr("Note"));
+    return true;
+}
+

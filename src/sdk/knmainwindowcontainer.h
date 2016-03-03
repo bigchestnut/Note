@@ -20,7 +20,11 @@
 #define KNMAINWINDOWCONTAINER_H
 
 #include <QWidget>
-
+class QHBoxLayout;
+class QTreeWidget;
+/*!
+ * \brief The KNMainWindowContainer class contains all widgets.
+ */
 class KNMainWindowContainer : public QWidget
 {
     Q_OBJECT
@@ -30,6 +34,11 @@ public:
 signals:
 
 public slots:
+
+private:
+    QTreeWidget *treeWidget;
+    QHBoxLayout *mainLayout;
+
 };
 
 #endif // KNMAINWINDOWCONTAINER_H

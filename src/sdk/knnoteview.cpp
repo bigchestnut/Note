@@ -16,22 +16,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include "knmainwindowcontainer.h"
-#include "knnotemodel.h"
 #include "knnoteview.h"
-#include <QTreeWidget>
-#include <QHBoxLayout>
-#include <QTreeWidgetItem>
-KNMainWindowContainer::KNMainWindowContainer(QWidget *parent)
-    :QWidget(parent)
-    ,mainLayout(new QHBoxLayout())
-    ,noteModel(new KNNoteModel(this))
-    ,noteView(new KNNoteView(this))
+
+KNNoteView::KNNoteView(QWidget *parent)
+    :QTableView(parent)
 {
-    noteView->setModel(noteModel);
-    //add Widget to mainLayout's left.
-    mainLayout->addWidget(noteView);
-    //set layout.
-    this->setLayout(mainLayout);
+
 }
 

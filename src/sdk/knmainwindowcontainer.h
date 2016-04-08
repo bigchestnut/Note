@@ -21,7 +21,8 @@
 
 #include <QWidget>
 class QHBoxLayout;
-class QTreeWidget;
+class KNNoteModel;
+class KNNoteView;
 /*!
  * \brief The KNMainWindowContainer class contains all widgets.
  */
@@ -36,8 +37,9 @@ signals:
 public slots:
 
 private:
-    QTreeWidget *treeWidget;
     QHBoxLayout *mainLayout;
+    KNNoteModel *noteModel;
+    KNNoteView *noteView;
 
 };
 

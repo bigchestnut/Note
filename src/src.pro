@@ -117,10 +117,16 @@ SOURCES += \
     sdk/knsingletonapplication.cpp \
     core/knpluginmanager.cpp \
     sdk/knmainwindow.cpp \
-    sdk/knmainwindowcontainer.cpp
+    sdk/knmainwindowcontainer.cpp \
+    sdk/knnotemodel.cpp \
+    sdk/knnote.cpp \
+    sdk/knnoteview.cpp
 
 HEADERS += \
     sdk/knsingletonapplication.h \
     core/knpluginmanager.h \
     sdk/knmainwindow.h \
-    sdk/knmainwindowcontainer.h
+    sdk/knmainwindowcontainer.h \
+    sdk/knnotemodel.h \
+    sdk/knnote.h \
+    sdk/knnoteview.h

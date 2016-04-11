@@ -17,29 +17,30 @@
  */
 
 #include "knnotemodel.h"
+#include "knnotelist.h"
 #include <QDebug>
 KNNoteModel::KNNoteModel(QObject *parent)
     : QAbstractTableModel(parent)
+    , noteList(new KNNoteList())
 {
 }
 
-void KNNoteModel::setNote(const KNNote &note)
+void KNNoteModel::setNote(KNNoteList *noteList)
 {
     /*tell orther related class that this model will reset data*/
     beginResetModel();
-    this->note=note;
+    this->noteList=noteList;
     endResetModel();
 }
 
 int KNNoteModel::rowCount(const QModelIndex &parent) const
 {
-    //TODO:note.count()
-    return 3;
+    return noteList->rowCount();
 }
 
 int KNNoteModel::columnCount(const QModelIndex &parent) const
 {
-    return 3;
+    return noteList->columnCount();
 }
 
 QVariant KNNoteModel::data(const QModelIndex &index, int role) const
@@ -55,7 +56,9 @@ QVariant KNNoteModel::data(const QModelIndex &index, int role) const
     }
     else if (role == Qt::DisplayRole)
     {
-        return "sfjaosf";
+        int column =index.column();
+        int row = index.row();
+        return noteList->getData(row,column);
     }
     return QVariant();
 }
@@ -68,12 +71,38 @@ QVariant KNNoteModel::headerData(int section, Qt::Orientation orientation, int r
     {
         return QVariant();
     }
+    if(role==Qt::DisplayRole&&orientation==Qt::Vertical)//vertical header
+    {
+        return section+1;//row number
+    }
     return noteAt(section);
+}
+
+Qt::ItemFlags KNNoteModel::flags(const QModelIndex &index) const
+{
+    Qt::ItemFlags flags = QAbstractItemModel::flags(index);
+    flags |= Qt::ItemIsEditable;
+    return flags;//return new flags <!!with!!> editable
+}
+
+bool KNNoteModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if(index.isValid()&&role==Qt::EditRole)
+    {
+        int row=index.row();
+        int column=index.column();
+        if(noteList->setData(row,column,value))
+        {
+            emit dataChanged(index,index);
+
+            return true;
+        }
+        return false;
+    }
+    return false;
 }
 
 QString KNNoteModel::noteAt(int offset) const
 {
-    //TODO: 返回列名函数
-    qDebug()<< offset;
-    return QString::number(offset);
+    return noteList->getColumnName(offset);
 }

@@ -16,27 +16,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef KNNOTE_H
-#define KNNOTE_H
-#include <QString>
-#include <QVariant>
-class KNNote
+#ifndef KNNOTELIST_H
+#define KNNOTELIST_H
+#include "knnote.h"
+#include <QList>
+class KNNote;
+class QString;
+class QVariant;
+class KNNoteList
 {
 public:
-    KNNote();
-    void setTitle(QString title);
-    void setContent(QString content);
+    KNNoteList();
+    /*!
+     * \brief rowCount
+     * \return the number of all rows
+     */
+    int rowCount();
     /*!
      * \brief columnCount
      * \return the number of all columns
      */
     int columnCount();
-    /*!
-     * \brief data
-     * \param column
-     * \return the value of this column
-     */
-    QVariant data(int column);
     /*!
      * \brief getColumnName
      * \param offset
@@ -44,21 +44,17 @@ public:
      */
     QString getColumnName(int offset);
     /*!
-     * \brief setData
-     * \param column
-     * \param value
-     * \return
+     * \brief getData return the data of this cell
+     * \param row row number
+     * \param column column number
+     * \return the data of this cell
      */
-    bool setData(int column,QString value);
+    QVariant getData(int row,int column);
+
+    bool setData(int row,int column,QVariant value);
 private:
-    /*!
-     * \brief title the title of this note
-     */
-    QString title;
-    /*!
-     * \brief content the content of this note
-     */
-    QString content;
+    //a list of all note points
+    QList<KNNote *> noteList;
 };
 
-#endif // KNNOTE_H
+#endif // KNNOTELIST_H

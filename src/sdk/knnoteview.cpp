@@ -17,10 +17,11 @@
  */
 
 #include "knnoteview.h"
-
+#include <QHeaderView>
+#include "knnotedelegate.h"
 KNNoteView::KNNoteView(QWidget *parent)
     :QTableView(parent)
 {
-
+    setItemDelegate(new KNNoteDelegate());
 }
 

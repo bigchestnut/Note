@@ -20,7 +20,8 @@
 #define KNNOTEMODEL_H
 
 #include <QAbstractTableModel>
-#include "knnote.h"
+class KNNoteList;
+
 class KNNoteModel : public QAbstractTableModel
 {
 public:
@@ -29,7 +30,7 @@ public:
      * \brief setNoteList set noteList for the model.
      * \param noteList the noteList that you want to set.
      */
-    void setNote(const KNNote &note);
+    void setNote(KNNoteList *noteList);
     /*!
      * \brief rowCount count the number of rows
      * \param parent rows' parent note
@@ -57,9 +58,29 @@ public:
      * \return the name of column
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    /*!
+     * \brief flags judge if the model is writeable
+     * \param index the index of this model
+     * \return if the model is writeable,return true.
+     */
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    /*!
+     * \brief setData set the new data
+     * \param index the index of the model you want to set
+     * \param value new value
+     * \param role role of this model
+     * \return
+     */
+    bool setData(const QModelIndex &index, const QVariant &value,
+                 int role = Qt::EditRole);
 private:
+    /*!
+     * \brief noteAt return the name of this column
+     * \param offset
+     * \return the name of this column
+     */
     QString noteAt(int offset) const;
-    KNNote note;
+    KNNoteList *noteList;
 };
 
 #endif // KNNOTEMODEL_H

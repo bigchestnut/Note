@@ -120,7 +120,10 @@ SOURCES += \
     sdk/knmainwindowcontainer.cpp \
     sdk/knnotemodel.cpp \
     sdk/knnote.cpp \
-    sdk/knnoteview.cpp
+    sdk/knnoteview.cpp \
+    sdk/knnotelist.cpp \
+    sdk/knnoteeditor.cpp \
+    sdk/knnotedelegate.cpp
 
 HEADERS += \
     sdk/knsingletonapplication.h \
@@ -129,4 +132,7 @@ HEADERS += \
     sdk/knmainwindowcontainer.h \
     sdk/knnotemodel.h \
     sdk/knnote.h \
-    sdk/knnoteview.h
+    sdk/knnoteview.h \
+    sdk/knnotelist.h \
+    sdk/knnoteeditor.h \
+    sdk/knnotedelegate.h

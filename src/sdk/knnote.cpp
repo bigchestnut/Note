@@ -17,10 +17,10 @@
  */
 
 #include "knnote.h"
-
+#include <QString>
 KNNote::KNNote()
 {
-    setTitle("哈哈");
+    setTitle("挥洒的");
     setContent("阿斯科利放假阿斯利康感觉!");
 }
 
@@ -33,4 +33,61 @@ void KNNote::setContent(QString content)
 {
     this->content=content;
 }
+
+int KNNote::columnCount()
+{
+    return 2;
+}
+
+QVariant KNNote::data(int column)
+{
+    switch (column) {
+    case 0:
+        return this->title;
+        break;
+    case 1:
+        return this->content;
+        break;
+    default:
+        return QVariant();
+        break;
+    }
+}
+
+QString KNNote::getColumnName(int offset)
+{
+    switch (offset) {
+    case 0:
+        return "标题";
+        break;
+    case 1:
+        return "内容";
+        break;
+    default:
+        return "";
+        break;
+    }
+}
+
+bool KNNote::setData(int column, QString value)
+{
+    switch (column) {
+    case 0:
+    {
+        setTitle(value);
+        return true;
+        break;
+    }
+    case 1:
+    {
+        setContent(value);
+        return true;
+        break;
+    }
+    default:
+        return false;
+        break;
+    }
+}
+
 
